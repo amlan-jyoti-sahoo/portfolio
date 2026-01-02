@@ -217,14 +217,25 @@ const CompanyCard = ({
             </motion.div>
 
             {/* Expanded Content: Description Only */}
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
                 {isHovered && (
                     <motion.div 
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: 20 }}
-                        transition={{ duration: 0.3, delay: 0.1 }}
-                        className="flex-1 p-6 border-l border-white/10 flex flex-col justify-center h-full min-w-[250px] overflow-hidden"
+                        initial={{ opacity: 0, x: 20, width: 0, minWidth: 0 }}
+                        animate={{ 
+                            opacity: 1, 
+                            x: 0, 
+                            width: "auto",
+                            minWidth: "250px",
+                            transition: { duration: 0.3, delay: 0.1 } 
+                        }}
+                        exit={{ 
+                            opacity: 0, 
+                            x: 20, 
+                            width: 0,
+                            minWidth: 0,
+                            transition: { duration: 0.2, delay: 0 } 
+                        }}
+                        className="flex-1 p-6 border-l border-white/10 flex flex-col justify-center h-full overflow-hidden whitespace-normal"
                     >
                         <h4 className="text-lg font-bold text-neon-blue mb-4">About the Role</h4>
                         <p className="text-gray-300 text-sm text-left leading-relaxed line-clamp-4">
