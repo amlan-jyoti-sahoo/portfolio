@@ -2,14 +2,14 @@ import { motion } from 'framer-motion';
 
 const About = () => {
     const stats = [
-        { label: "Years Experience", value: "5+", color: "text-neon-blue" },
-        { label: "Projects Completed", value: "50+", color: "text-neon-purple" },
+        { label: "Years Experience", value: "3+", color: "text-neon-blue" },
+        { label: "Projects Completed", value: "15+", color: "text-neon-purple" },
         { label: "Technologies", value: "20+", color: "text-neon-pink" },
         { label: "Coffee Consumed", value: "∞", color: "text-neon-green" },
     ];
 
     const skills = [
-        "React & Next.js", "TypeScript", "Node.js", "React Native", "GraphQL", "AWS", "Docker", "Tailwind CSS"
+        "React Native", "TypeScript", "React", "Android Development", "Kotlin", "Flutter", "Dart", "Ios Development","Swift-UI", "Node.js", "AWS", "Firebase", "GitHub", "Git", 
     ];
 
     return (
@@ -36,7 +36,7 @@ const About = () => {
                                 <span className="text-neon-purple">const</span> <span className="text-neon-blue">developer</span> = <span className="text-white">{"{"}</span>
                             </div>
                             <div className="pl-4">
-                                <div>name: <span className="text-neon-green">'Amlan Sahoo'</span>,</div>
+                                <div>name: <span className="text-neon-green">'Amlanjyoti Sahoo'</span>,</div>
                                 <div>role: <span className="text-neon-green">'Software Engineer'</span>,</div>
                                 <div>passion: [<span className="text-neon-green">'Clean UI'</span>, <span className="text-neon-green">'Performance'</span>],</div>
                                 <div>status: <span className="text-neon-blue">BUILDING_THE_FUTURE</span></div>
