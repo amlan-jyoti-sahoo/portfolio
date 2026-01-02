@@ -336,7 +336,7 @@ const Projects = () => {
                     className="text-center mb-24"
                 >
                     <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight">
-                        Selected <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-green">Works</span>
+                        Engineering <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-green">Showcase</span>
                     </h2>
                     <p className="text-gray-400 max-w-2xl mx-auto text-lg">
                         Highlights from my journey in building digital products.
