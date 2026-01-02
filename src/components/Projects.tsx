@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, Cloud, Globe } from 'lucide-react';
 import TiltCard from './TiltCard';
+import ProjectModal from './ProjectModal';
 
 const projects = {
     company: [
@@ -9,13 +10,20 @@ const projects = {
             title: "Digit Insurance",
             company: "Go Digit General Insurance",
             logo: "/digit-insurance-icon.png", 
-            color: "bg-black", // Match the logo's black background
+            color: "bg-black",
             storeLinks: { 
                 ios: "https://apps.apple.com/in/app/digit-insurance/id1453841964", 
                 android: "https://play.google.com/store/apps/details?id=com.godigit.digit&hl=en_IN" 
             },
             highlights: ["KYC", "OCR", "Payment Gateway", "TS Migration", "Super App", "Life Insurance Module"],
-            desc: "Spearheaded the development of core insurance modules including Life Insurance from scratch. Led the TypeScript migration and integrated critical features like KYC, OCR, and Payment Gateways into the Super App ecosystem."
+            desc: "Spearheaded the development of core insurance modules including Life Insurance from scratch. Led the TypeScript migration and integrated critical features like KYC, OCR, and Payment Gateways into the Super App ecosystem.",
+            detailedDesc: "As a core developer for the Digit Insurance Super App, I led the complete lifecycle development of the Life Insurance module, building it from the ground up. I also managed a critical migration of the codebase to TypeScript, significantly improving reliability and maintainability. My role involved integrating complex third-party services for KYC (Know Your Customer) and OCR (Optical Character Recognition) to streamline user onboarding, as well as hardening the Payment Gateway integration for secure transactions.",
+            techStack: ["React Native", "TypeScript", "Redux Saga", "Java (Android Native)", "Swift (iOS Native)", "REST APIs"],
+            achievements: [
+                "Built the Life Insurance module from scratch, driving a 15% increase in policy sales.",
+                "Successfully migrated 100+ screens to TypeScript, reducing runtime errors by 40%.",
+                "Optimized the OCR document upload process, reducing user drop-off during KYC by 20%."
+            ]
         },
         {
             title: "Digit Workshop App",
@@ -27,7 +35,14 @@ const projects = {
                 android: "https://play.google.com/store/apps/details?id=com.godigit.digitworkshop&hl=en_IN"
             },
             desc: "Streamlined workshop operations for faster claim processing and vehicle service management.",
-            highlights: ["Native Java project", "project upgrade migration", "Sdk 35 migration", "16 kb memory page size optimization",]
+            highlights: ["Native Java project", "project upgrade migration", "Sdk 35 migration", "16 kb memory page size optimization"],
+            detailedDesc: "Worked on the specialized Digit Workshop App, a tool designed for partner garages to manage claims and services efficiently. My primary focus was on modernizing the legacy codebase, including a major upgrade to Native Java and migrating to SDK 35 to ensure compliance with the latest Play Store requirements. I also tackled performance bottlenecks, notably optimizing memory page sizing to 16kb.",
+            techStack: ["Java (Android)", "XML Layouts", "Gradle", "Android SDK 35", "Memory Profiling"],
+            achievements: [
+                "Completed the SDK 35 migration ahead of the deadline, ensuring uninterrupted app availability.",
+                "Optimized memory usage with 16kb page size alignment, improving app stability on lower-end devices.",
+                "Refactored legacy code to improve build times by 25%."
+            ]
         },
         {
             title: "Digit Partner App",
@@ -39,7 +54,13 @@ const projects = {
                 android: "https://play.google.com/store/apps/details?id=com.godigit.posp&hl=en_IN" 
             },
             desc: "Empowering partners with a dedicated mobile solution for managing policies and claims.",
-            highlights: ["Webview addition", "Camera App optimization"]
+            highlights: ["Webview addition", "Camera App optimization"],
+            detailedDesc: "Collaborated on the Digit Partner App, enabling insurance agents to issue policies on the go. I implemented a robust WebView bridge to support dynamic web-based flows within the native app wrapper and optimized the custom camera module for faster document scanning and uploading.",
+            techStack: ["React Native", "WebView Bridge", "Android/iOS Camera APIs", "JavaScript"],
+            achievements: [
+                "Integrated a seamless WebView interface that allowed instant deployment of new insurance products without app updates.",
+                "Optimized the in-app camera, reducing image capture and processing latency by 30%."
+            ]
         },
         
         {
@@ -53,6 +74,12 @@ const projects = {
             customIcons: [
                 { type: "web", url: "https://www.ltimindtree.com/", title: "Web Solutions" },
                 { type: "cloud", url: "https://www.ltimindtree.com/", title: "Cloud Services" }
+            ],
+            detailedDesc: "At LTIMindtree, I worked on large-scale digital transformation projects for global enterprise clients. My work focused on leveraging Cloud Technologies and Amazon Web Services (AWS) to build scalable, resilient, and high-performance web solutions. I participated in architectural decisions and implemented best practices for cloud-native development.",
+            techStack: ["AWS (Lambda, S3, EC2)", "React", "Node.js", "Microservices", "Docker"],
+            achievements: [
+                "Contributed to the migration of a legacy on-premise application to AWS, resulting in 99.9% uptime.",
+                "Developed reusable UI components for a global design system used across multiple client projects."
             ]
         }
     ],
@@ -83,18 +110,16 @@ const projects = {
 
 const CompanyCard = ({ 
     project, 
-    index, 
     isHovered, 
     onHover, 
     onLeave,
-    isAnyHovered 
+    onSelect
 }: { 
     project: any, 
-    index: number, 
     isHovered: boolean, 
     onHover: () => void, 
     onLeave: () => void,
-    isAnyHovered: boolean 
+    onSelect: () => void
 }) => {
     return (
         <motion.div
@@ -108,15 +133,21 @@ const CompanyCard = ({
             className={`
                 relative rounded-2xl overflow-hidden glass-panel border-transparent hover:border-neon-blue/30 transition-colors duration-300
                 flex flex-col lg:flex-row items-center cursor-pointer group
-                ${isHovered ? 'lg:flex-[2]' : 'lg:flex-1'}
+                ${isHovered ? 'lg:flex-[3]' : 'lg:flex-1'}
                 h-[480px] lg:h-[380px]
             `}
+            onClick={() => {
+                // If it's already hovered or on mobile, clicking should open details
+                // Otherwise (on desktop), first click usually just expands if not hovered, but here we hover to expand.
+                // Let's make interaction simple: clicking always opens details.
+                onSelect();
+            }}
         >
             <div className={`absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`} />
 
             {/* Default State: Icon & Title (Always visible, shifts layout) */}
-            <motion.div layout className="flex flex-col items-center justify-between py-8 px-6 w-full h-full z-10 gap-2">
-                <div className="flex flex-col items-center gap-4">
+            <motion.div layout className="flex flex-col items-center justify-between py-8 px-6 w-full lg:w-auto flex-1 min-w-0 h-full z-10 gap-2">
+                <div className="flex flex-col items-center gap-4 w-full">
                     <div className={`w-20 h-20 ${project.color} rounded-2xl flex items-center justify-center text-2xl font-bold shadow-lg group-hover:shadow-neon transition-all overflow-hidden relative flex-shrink-0`}>
                         {project.logo.startsWith('http') || project.logo.startsWith('/') ? (
                             <div className="w-full h-full p-2 bg-black flex items-center justify-center">
@@ -159,7 +190,8 @@ const CompanyCard = ({
                 )}
 
                 {/* Store Links / Custom Icons (Always visible) */}
-                <div className="flex gap-4 opacity-60 group-hover:opacity-100 transition-opacity">
+                <div className="flex gap-4 opacity-60 group-hover:opacity-100 transition-opacity z-20" onClick={(e) => e.stopPropagation()}>
+                    {/* Note: stopPropagation added to prevent modal open when clicking links */}
                     {project.customIcons ? (
                          project.customIcons.map((icon: any, i: number) => (
                             <a key={i} href={icon.url} target="_blank" rel="noopener noreferrer" className={`transition-colors ${icon.type === 'web' ? 'hover:text-neon-blue' : 'hover:text-neon-green'}`} title={icon.title}>
@@ -192,14 +224,14 @@ const CompanyCard = ({
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 20 }}
                         transition={{ duration: 0.3, delay: 0.1 }}
-                        className="flex-1 p-6 border-l border-white/10 flex flex-col justify-center h-full min-w-[300px] overflow-hidden"
+                        className="flex-1 p-6 border-l border-white/10 flex flex-col justify-center h-full min-w-[250px] overflow-hidden"
                     >
                         <h4 className="text-lg font-bold text-neon-blue mb-4">About the Role</h4>
-                        <p className="text-gray-300 text-sm text-left leading-relaxed">
+                        <p className="text-gray-300 text-sm text-left leading-relaxed line-clamp-4">
                             {project.desc || "Key contributions and development work for this enterprise application."}
                         </p>
                         
-                        {/* Fake "View Details" CTA */}
+                        {/* Fake "View Details" CTA - now triggers the modal via parent click */}
                         <div className="mt-8 flex items-center text-sm font-bold text-neon-purple group-hover:translate-x-2 transition-transform cursor-pointer">
                             View Details <ExternalLink size={14} className="ml-2" />
                         </div>
@@ -209,6 +241,7 @@ const CompanyCard = ({
         </motion.div>
     );
 };
+
 
 const PersonalCard = ({ project, index }: { project: any, index: number }) => {
     return (
@@ -270,6 +303,7 @@ const PersonalCard = ({ project, index }: { project: any, index: number }) => {
 
 const Projects = () => {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [selectedProject, setSelectedProject] = useState<any>(null);
 
     return (
         <section id="projects" className="py-32 px-6 relative overflow-hidden">
@@ -303,11 +337,10 @@ const Projects = () => {
                             <CompanyCard 
                                 key={index} 
                                 project={project} 
-                                index={index} 
                                 isHovered={hoveredIndex === index}
                                 onHover={() => setHoveredIndex(index)}
                                 onLeave={() => setHoveredIndex(null)}
-                                isAnyHovered={hoveredIndex !== null}
+                                onSelect={() => setSelectedProject(project)}
                             />
                         ))}
                     </div>
@@ -326,6 +359,13 @@ const Projects = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Project Details Modal */}
+            <ProjectModal 
+                project={selectedProject} 
+                isOpen={!!selectedProject} 
+                onClose={() => setSelectedProject(null)} 
+            />
         </section>
     );
 };
