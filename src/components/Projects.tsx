@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Cloud, Globe, Github } from 'lucide-react';
 import ProjectModal from './ProjectModal';
@@ -110,24 +110,24 @@ const projects = {
     ]
 };
 
-const CompanyCard = ({ 
+const CompanyCard = memo(({ 
     project, 
+    index,
     isHovered, 
     onHover, 
     onLeave,
     onSelect
 }: { 
     project: any, 
+    index: number,
     isHovered: boolean, 
-    onHover: () => void, 
+    onHover: (index: number) => void, 
     onLeave: () => void,
-    onSelect: () => void
+    onSelect: (project: any) => void
 }) => {
     return (
         <motion.div
             layout
-            onHoverStart={onHover}
-            onHoverEnd={onLeave}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -139,16 +139,18 @@ const CompanyCard = ({
                 h-[480px] lg:h-[380px]
             `}
             onClick={() => {
-                // If it's already hovered or on mobile, clicking should open details
-                // Otherwise (on desktop), first click usually just expands if not hovered, but here we hover to expand.
-                // Let's make interaction simple: clicking always opens details.
-                onSelect();
+                onSelect(project);
             }}
         >
             <div className={`absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`} />
 
             {/* Default State: Icon & Title (Always visible, shifts layout) */}
-            <motion.div layout className="flex flex-col items-center justify-between py-8 px-6 w-full lg:w-auto flex-1 min-w-0 h-full z-10 gap-2">
+            <motion.div 
+                layout 
+                className="flex flex-col items-center justify-between py-8 px-6 w-full lg:w-auto flex-1 min-w-0 h-full z-10 gap-2"
+                onHoverStart={() => onHover(index)}
+                onHoverEnd={onLeave}
+            >
                 <div className="flex flex-col items-center gap-4 w-full">
                     <div className={`w-20 h-20 ${project.color} rounded-2xl flex items-center justify-center text-2xl font-bold shadow-lg group-hover:shadow-neon transition-all overflow-hidden relative flex-shrink-0`}>
                         {project.logo.startsWith('http') || project.logo.startsWith('/') ? (
@@ -259,20 +261,26 @@ const CompanyCard = ({
             </AnimatePresence>
         </motion.div>
     );
-};
+});
 
 
 
 
-const PersonalProjectShowcase = () => {
-    const steps = [
-        { video: indiStep1, label: "Immersive UI" },
-        { video: indiStep2, label: "E-Commerce Core" },
-        { video: indiStep3, label: "Video-First Experience" }
-    ];
+const steps = [
+    { video: indiStep1, label: "Immersive UI" },
+    { video: indiStep2, label: "E-Commerce Core" },
+    { video: indiStep3, label: "Video-First Experience" }
+];
 
+const PersonalProjectShowcase = memo(() => {
     return (
-        <div className="w-full bg-white/5 border border-white/10 rounded-3xl p-8 overflow-hidden relative group hover:border-neon-purple/50 transition-colors duration-500">
+        <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="w-full bg-white/5 border border-white/10 rounded-3xl p-8 overflow-hidden relative group hover:border-neon-purple/50 transition-colors duration-500"
+        >
             <div className="flex flex-col xl:flex-row gap-10">
                 {/* Videos Section - Displayed side by side */}
                 <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -348,13 +356,17 @@ const PersonalProjectShowcase = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
-};
+});
 
 const Projects = () => {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const [selectedProject, setSelectedProject] = useState<any>(null);
+
+    const handleHover = useCallback((index: number) => setHoveredIndex(index), []);
+    const handleLeave = useCallback(() => setHoveredIndex(null), []);
+    const handleSelect = useCallback((project: any) => setSelectedProject(project), []);
 
     return (
         <section id="projects" className="py-32 px-6 relative overflow-hidden">
@@ -395,11 +407,12 @@ const Projects = () => {
                         {projects.company.map((project, index) => (
                             <CompanyCard 
                                 key={index} 
+                                index={index}
                                 project={project} 
                                 isHovered={hoveredIndex === index}
-                                onHover={() => setHoveredIndex(index)}
-                                onLeave={() => setHoveredIndex(null)}
-                                onSelect={() => setSelectedProject(project)}
+                                onHover={handleHover}
+                                onLeave={handleLeave}
+                                onSelect={handleSelect}
                             />
                         ))}
                     </div>
