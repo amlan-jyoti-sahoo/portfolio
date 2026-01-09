@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://amlan-jyoti-sahoo.github.io/amlan_protfolio_app/",
+  "homepage": "https://amlan-jyoti-sahoo.github.io/portfolio/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
