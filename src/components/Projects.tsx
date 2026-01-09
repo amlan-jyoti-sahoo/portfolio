@@ -141,6 +141,8 @@ const CompanyCard = memo(({
             onClick={() => {
                 onSelect(project);
             }}
+            onHoverStart={() => onHover(index)}
+            onHoverEnd={onLeave}
         >
             <div className={`absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`} />
 
@@ -148,8 +150,6 @@ const CompanyCard = memo(({
             <motion.div 
                 layout 
                 className="flex flex-col items-center justify-between py-8 px-6 w-full lg:w-auto flex-1 min-w-0 h-full z-10 gap-2"
-                onHoverStart={() => onHover(index)}
-                onHoverEnd={onLeave}
             >
                 <div className="flex flex-col items-center gap-4 w-full">
                     <div className={`w-20 h-20 ${project.color} rounded-2xl flex items-center justify-center text-2xl font-bold shadow-lg group-hover:shadow-neon transition-all overflow-hidden relative flex-shrink-0`}>
