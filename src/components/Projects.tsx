@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, Cloud, Globe } from 'lucide-react';
-import TiltCard from './TiltCard';
+import { ExternalLink, Cloud, Globe } from 'lucide-react';
 import ProjectModal from './ProjectModal';
+import indiStep1 from '../assets/videos/indi-step-1.mov';
+import indiStep2 from '../assets/videos/indi-step-2.mov';
+import indiStep3 from '../assets/videos/indi-step-3.mov';
 
 const projects = {
     company: [
@@ -260,61 +262,94 @@ const CompanyCard = ({
 };
 
 
-const PersonalCard = ({ project, index }: { project: any, index: number }) => {
+
+
+const PersonalProjectShowcase = () => {
+    const steps = [
+        { video: indiStep1, label: "Step 1: Identity" },
+        { video: indiStep2, label: "Step 2: Verification" },
+        { video: indiStep3, label: "Step 3: Approval" }
+    ];
+
     return (
-        <TiltCard className="group relative rounded-2xl bg-bg-dark border border-white/5 hover:border-neon-purple/50 transition-colors duration-500 h-full">
-            <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="h-full"
-            >
-                 {/* Continuous Floating / Breathing Animation for the card content */}
-                <motion.div 
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: index * 1.5 }}
-                    className="relative h-full flex flex-col"
-                >
-                    {/* Video Placeholder Area */}
-                    <div className="h-48 bg-black/50 relative overflow-hidden rounded-t-2xl group-hover:shadow-[0_0_30px_rgba(188,19,254,0.2)] transition-shadow duration-500">
-                        <div className="absolute inset-0 bg-gradient-to-t from-bg-dark to-transparent z-10" />
-                        
-                        {/* Animated Gradient Placeholder if no video */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/10 via-neon-purple/10 to-neon-pink/10 animate-blob mix-blend-overlay" />
-                        
-                        {/* Preview Badge */}
-                        <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
-                            <span className="px-5 py-2 bg-white/10 backdrop-blur-md rounded-full text-sm font-medium border border-white/20 text-white shadow-lg">View Project</span>
-                        </div>
-                    </div>
-
-                    <div className="p-6 relative z-10 flex-grow flex flex-col">
-                        <h3 className="text-2xl font-bold mb-2 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-neon-blue group-hover:to-neon-purple transition-all duration-300">
-                            {project.title}
-                        </h3>
-                        <p className="text-gray-400 text-sm mb-4 line-clamp-2 leading-relaxed">{project.desc}</p>
-                        
-                        <div className="flex flex-wrap gap-2 mb-6 mt-auto">
-                            {project.tech.map((t: string) => (
-                                <span key={t} className="px-2 py-1 text-[10px] uppercase tracking-wider font-semibold rounded bg-white/5 text-gray-400 border border-white/5">
-                                    {t}
+        <div className="w-full bg-white/5 border border-white/10 rounded-3xl p-8 overflow-hidden relative group hover:border-neon-purple/50 transition-colors duration-500">
+            <div className="flex flex-col xl:flex-row gap-10">
+                {/* Videos Section - Displayed side by side */}
+                <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {steps.map((step, index) => (
+                        <div key={index} className="relative rounded-xl overflow-hidden shadow-2xl bg-black/50 border border-white/5 group-hover:shadow-neon-purple/20 transition-all duration-500">
+                             {/* Number Badge */}
+                             <div className="absolute top-3 left-3 z-10">
+                                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-neon-purple/20 backdrop-blur-md border border-neon-purple/50 text-white font-bold text-sm shadow-[0_0_10px_rgba(188,19,254,0.3)]">
+                                    {index + 1}
                                 </span>
-                            ))}
+                            </div>
+                            
+                            <video 
+                                src={step.video} 
+                                autoPlay 
+                                loop 
+                                muted 
+                                playsInline 
+                                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 min-h-[300px]"
+                            />
+                            
+                            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/80 to-transparent p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                <p className="text-white text-sm font-medium text-center">{step.label}</p>
+                            </div>
                         </div>
+                    ))}
+                </div>
 
-                        <div className="flex gap-4 pt-4 border-t border-white/5">
-                            <a href={project.links.github} className="flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-white transition-colors">
-                                <Github size={16} /> <span className="text-xs uppercase tracking-widest">Code</span>
-                            </a>
-                            <a href={project.links.demo} className="flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-neon-pink transition-colors ml-auto">
-                                <ExternalLink size={16} /> <span className="text-xs uppercase tracking-widest">Live Demo</span>
-                            </a>
+                {/* Description Section - Right Side */}
+                <div className="xl:w-[400px] flex flex-col justify-center space-y-6">
+                    <div>
+                        <div className="flex items-center gap-3 mb-4">
+                            <span className="px-3 py-1 rounded-full bg-neon-purple/10 text-neon-purple text-xs font-bold uppercase tracking-widest border border-neon-purple/20">
+                                Featured Project
+                            </span>
+                        </div>
+                        <h3 className="text-3xl font-bold text-white mb-4 leading-tight">
+                            Identity <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-purple to-neon-pink">Verification Flow</span>
+                        </h3>
+                        <p className="text-gray-400 leading-relaxed">
+                            A seamless, three-step identity verification process designed for high-conversion user onboarding. 
+                            This flow integrates real-time video capture, liveness detection, and document scanning into a unified, 
+                            user-friendly interface.
+                        </p>
+                    </div>
+
+                    <div className="space-y-4">
+                        <div className="flex items-start gap-3">
+                            <div className="mt-1 w-1.5 h-1.5 rounded-full bg-neon-purple shadow-[0_0_10px_rgba(188,19,254,0.8)]" />
+                            <p className="text-sm text-gray-300"><span className="text-white font-semibold">Step 1:</span> User captures initial identity reference.</p>
+                        </div>
+                        <div className="flex items-start gap-3">
+                            <div className="mt-1 w-1.5 h-1.5 rounded-full bg-neon-purple shadow-[0_0_10px_rgba(188,19,254,0.8)]" />
+                            <p className="text-sm text-gray-300"><span className="text-white font-semibold">Step 2:</span> Automated processing and validation.</p>
+                        </div>
+                        <div className="flex items-start gap-3">
+                            <div className="mt-1 w-1.5 h-1.5 rounded-full bg-neon-purple shadow-[0_0_10px_rgba(188,19,254,0.8)]" />
+                            <p className="text-sm text-gray-300"><span className="text-white font-semibold">Step 3:</span> Final confirmation and approval.</p>
                         </div>
                     </div>
-                </motion.div>
-            </motion.div>
-        </TiltCard>
+
+                    <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+                        {["React Native", "VisionCamera", "TensorFlow", "Reanimated"].map((tech) => (
+                            <span key={tech} className="px-2 py-1 text-[10px] uppercase tracking-wider font-semibold rounded bg-white/5 text-gray-400 border border-white/5">
+                                {tech}
+                            </span>
+                        ))}
+                    </div>
+
+                    <div className="pt-2">
+                         <button className="flex items-center gap-2 text-white hover:text-neon-purple transition-colors font-semibold group/btn">
+                            View Case Study <ExternalLink size={16} className="group-hover/btn:translate-x-1 transition-transform"/>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 };
 
@@ -377,11 +412,8 @@ const Projects = () => {
                         <span className="w-12 h-px bg-neon-purple"></span>
                         Personal Innovations
                     </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 perspective-[2000px]">
-                        {projects.personal.map((project, index) => (
-                            <PersonalCard key={index} project={project} index={index} />
-                        ))}
-                    </div>
+                    
+                    <PersonalProjectShowcase />
                 </div>
             </div>
 

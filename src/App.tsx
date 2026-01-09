@@ -3,6 +3,7 @@ import Layout from './components/Layout';
 import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
+import Certificates from './components/Certificates';
 import Badges from './components/Badges';
 import Contact from './components/Contact';
 import ResumeModal from './components/ResumeModal';
@@ -18,6 +19,7 @@ function App() {
         <Hero />
         <About />
         <Projects />
+        <Certificates />
         <Badges />
         <Contact />
       </Layout>
