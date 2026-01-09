@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Cloud, Globe } from 'lucide-react';
 import ProjectModal from './ProjectModal';
-import indiStep1 from '../assets/videos/indi-step-1.mov';
-import indiStep2 from '../assets/videos/indi-step-2.mov';
-import indiStep3 from '../assets/videos/indi-step-3.mov';
+import indiStep1 from '../assets/videos/indi-step-1.mp4';
+import indiStep2 from '../assets/videos/indi-step-2.mp4';
+import indiStep3 from '../assets/videos/indi-step-3.mp4';
 
 const projects = {
     company: [
