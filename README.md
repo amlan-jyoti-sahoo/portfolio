@@ -3,6 +3,7 @@
 A modern, responsive, and animated developer portfolio built with React, TypeScript, and Tailwind CSS.
 
 ## 🔗 Website Preview
+https://amlan-jyoti-sahoo.github.io/portfolio/
 
 <div align="center">
   <a href="https://amlan-jyoti-sahoo.github.io/portfolio/">
