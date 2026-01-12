@@ -7,6 +7,7 @@ const Contact = () => {
     const form = useRef<HTMLFormElement>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [status, setStatus] = useState<'success' | 'error' | null>(null);
+    const [mobileError, setMobileError] = useState<string | null>(null);
 
     const sendEmail = (e: React.FormEvent) => {
         e.preventDefault();
@@ -14,16 +15,26 @@ const Contact = () => {
 
         setIsLoading(true);
         setStatus(null);
+        setMobileError(null);
 
         // Get form data
         const formData = new FormData(form.current);
         const userName = formData.get('user_name') as string;
         const userEmail = formData.get('user_email') as string;
-        const mobile = formData.get('mobile') as string;
+        
+        // Handle split mobile input
+        const countryCode = formData.get('country_code') as string;
+        const mobileNum = formData.get('mobile_number') as string;
+        const mobile = mobileNum ? `${countryCode} ${mobileNum}` : "";
+
+        // Form data already grabbed above
+
+
         const originalMessage = formData.get('message') as string;
 
         // Construct the full message with details prepended
         const fullMessage = `
+
 --- Contact Details ---
 Name: ${userName}
 Email: ${userEmail}
@@ -108,12 +119,32 @@ ${originalMessage}
                             <label className="text-xs text-neon-cyan font-mono uppercase flex items-center gap-2">
                                 <Phone size={12} /> Mobile Number <span className="text-gray-500 normal-case">(Optional)</span>
                             </label>
-                            <input 
-                                type="tel" 
-                                name="mobile"
-                                className="w-full bg-black/40 border border-white/10 rounded-lg text-white p-3 focus:outline-none focus:border-neon-cyan transition-colors font-mono placeholder-white/20"
-                                placeholder="+1 234 567 890"
-                            />
+                            <div className="flex gap-2">
+                                <input 
+                                    type="tel" 
+                                    name="country_code"
+                                    defaultValue="+91"
+                                    maxLength={5}
+                                    className="w-24 bg-black/40 border border-white/10 rounded-lg text-white p-3 focus:outline-none focus:border-neon-cyan transition-colors font-mono placeholder-white/20 text-center"
+                                />
+                                <input 
+                                    type="tel" 
+                                    name="mobile_number"
+                                    maxLength={10}
+                                    className={`flex-1 bg-black/40 border ${mobileError ? 'border-red-500' : 'border-white/10'} rounded-lg text-white p-3 focus:outline-none focus:border-neon-cyan transition-colors font-mono placeholder-white/20`}
+                                    placeholder="1234567890"
+                                    onChange={(e) => {
+                                        setMobileError(null);
+                                        // Remove non-digit characters
+                                        e.target.value = e.target.value.replace(/\D/g, '');
+                                    }}
+                                />
+                            </div>
+                            {mobileError && (
+                                <span className="text-red-400 text-xs flex items-center gap-1 mt-1">
+                                    <AlertCircle size={10} /> {mobileError}
+                                </span>
+                            )}
                         </div>
 
                         <div className="space-y-2">

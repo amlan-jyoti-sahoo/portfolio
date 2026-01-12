@@ -30,7 +30,7 @@ const Navbar = ({ onResumeClick }: NavbarProps) => {
         
         <div className="hidden md:flex items-center space-x-8">
             {/* Standard Links */}
-          {['About', 'Projects', 'Contact'].map((item) => (
+          {['About', 'Journey', 'Projects', 'Contact'].map((item) => (
             <a 
                 key={item} 
                 href={`#${item.toLowerCase()}`} 
