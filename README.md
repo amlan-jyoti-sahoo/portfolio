@@ -7,10 +7,8 @@ https://amlan-jyoti-sahoo.github.io/portfolio/
 
 <div align="center">
   <a href="https://amlan-jyoti-sahoo.github.io/portfolio/">
-    <h3>🚀 Click here to visit the Live Site</h3>
     <img src="public/preview.png" alt="Portfolio Preview" width="100%" style="border-radius: 10px; border: 2px solid #333;" />
   </a>
-  <p><em>(Click the link above to view the live portfolio)</em></p>
 </div>
 
 ---
