@@ -35,7 +35,7 @@ const ResumeModal = ({ isOpen, onClose }: ResumeModalProps) => {
                             </div>
                             <div className="flex items-center gap-4">
                                 <a 
-                                    href="https://drive.google.com/file/d/1KXzJvVGxdcST2Uwrek_PNPUc9tz1l_DY/view?usp=drive_link" 
+                                    href="https://drive.google.com/file/d/1tuKZlol0k8xyTiktVdqXwW3IjwTR6mLF/view?usp=sharing" 
                                     target="_blank" 
                                     rel="noopener noreferrer"
                                     className="flex items-center gap-2 text-xs md:text-sm text-gray-300 hover:text-white transition-colors uppercase font-mono tracking-wider border border-white/20 px-3 py-1.5 rounded hover:bg-white/5"
@@ -58,7 +58,7 @@ const ResumeModal = ({ isOpen, onClose }: ResumeModalProps) => {
                                 Loading Document...
                              </div>
                              <iframe 
-                                src="https://drive.google.com/file/d/1KXzJvVGxdcST2Uwrek_PNPUc9tz1l_DY/preview" 
+                                src="https://drive.google.com/file/d/1tuKZlol0k8xyTiktVdqXwW3IjwTR6mLF/preview" 
                                 className="relative z-10 w-full h-full border-none"
                                 title="Resume PDF"
                                 allow="autoplay"
