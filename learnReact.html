@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn React for React Native Devs</title>
+    <!-- Importing Tailwind CSS for beautiful styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        /* Custom scrollbar for beautiful dark mode */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="bg-[#0f172a] text-slate-300 min-h-screen p-8 md:p-16">
+    <div class="max-w-4xl mx-auto bg-slate-900 border border-slate-800 p-10 shadow-2xl rounded-2xl shadow-indigo-900/20">
+        
+        <header class="mb-12 border-b border-slate-800 pb-6">
+            <h1 class="text-4xl font-extrabold text-indigo-400 mb-4 tracking-tight">React Web for React Native Developers</h1>
+            <p class="text-lg text-slate-400">Since you already have 3 years of experience with React Native, picking up React.js for the web is going to be incredibly easy for you, as <strong class="text-slate-200">90% of the concepts are exactly the same!</strong></p>
+        </header>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-100 mb-4 flex items-center">
+                <span class="bg-indigo-500/20 text-indigo-400 w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm font-bold border border-indigo-500/30">1</span> 
+                The Core is 100% Identical
+            </h2>
+            <p class="text-slate-400 mb-3">The <code class="bg-slate-800 border border-slate-700 px-1.5 py-0.5 rounded text-sm text-pink-400">react</code> package is exactly the same one used in React Native. This means everything you know about logic and state management directly translates:</p>
+            <ul class="list-disc pl-6 text-slate-400 space-y-2">
+                <li>Hooks (<code class="text-indigo-300 text-sm">useState, useEffect, useMemo</code>) are identical.</li>
+                <li>Props, Component Lifecycles, and Context API behave the exact same way.</li>
+            </ul>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-100 mb-4 flex items-center">
+                <span class="bg-indigo-500/20 text-indigo-400 w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm font-bold border border-indigo-500/30">2</span> 
+                The Render Engine: &lt;View&gt; vs &lt;div&gt;
+            </h2>
+            <p class="text-slate-400 mb-4">React Native translates primitive components into native iOS/Android UI elements. On the web, we use HTML tags.</p>
+            
+            <div class="overflow-x-auto rounded-xl border border-slate-700">
+                <table class="min-w-full text-left text-sm whitespace-nowrap">
+                    <thead class="bg-slate-800 border-b border-slate-700">
+                        <tr>
+                            <th class="p-3 font-semibold text-slate-200">React Native</th>
+                            <th class="p-3 font-semibold text-slate-200">React JS (Web)</th>
+                            <th class="p-3 font-semibold text-slate-200">Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-400 bg-slate-900/50">
+                        <tr>
+                            <td class="p-3 font-mono text-pink-400">&lt;View&gt;</td>
+                            <td class="p-3 font-mono text-blue-400">&lt;div&gt;</td>
+                            <td class="p-3">Container for layout.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-mono text-pink-400">&lt;Text&gt;</td>
+                            <td class="p-3 font-mono text-blue-400">&lt;h1&gt;, &lt;p&gt;, &lt;span&gt;</td>
+                            <td class="p-3">Displaying text and headings.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-mono text-pink-400">&lt;TouchableOpacity&gt;</td>
+                            <td class="p-3 font-mono text-blue-400">&lt;button&gt;, &lt;a&gt;</td>
+                            <td class="p-3">Requires <code class="text-xs bg-slate-800 px-1 rounded text-slate-300">onClick</code> not onPress.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-mono text-pink-400">&lt;Image&gt;</td>
+                            <td class="p-3 font-mono text-blue-400">&lt;img&gt;</td>
+                            <td class="p-3">Requires <code class="text-xs bg-slate-800 px-1 rounded text-slate-300">src</code> instead of source.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-100 mb-4 flex items-center">
+                <span class="bg-indigo-500/20 text-indigo-400 w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm font-bold border border-indigo-500/30">3</span> 
+                Styling: StyleSheet vs Tailwind CSS
+            </h2>
+            <p class="text-slate-400 mb-4">In React Native, you use <code class="text-sm bg-slate-800 px-1 rounded text-slate-200">StyleSheet.create()</code>. In your web project, we are using <strong>Tailwind CSS</strong>.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-slate-950 border border-slate-800 rounded-lg p-5">
+                    <p class="text-slate-500 text-xs mb-2 uppercase font-bold tracking-wider">React Native (StyleSheet)</p>
+                    <pre class="text-emerald-400 text-sm overflow-x-auto"><code>&lt;View style={{ 
+  flexDirection: 'row', 
+  margin: 16 
+}}&gt;
+  &lt;Text&gt;Hello&lt;/Text&gt;
+&lt;/View&gt;</code></pre>
+                </div>
+                <div class="bg-slate-950 border border-slate-800 rounded-lg p-5">
+                    <p class="text-slate-500 text-xs mb-2 uppercase font-bold tracking-wider">React Web (Tailwind)</p>
+                    <pre class="text-sky-400 text-sm overflow-x-auto"><code>&lt;div className="flex flex-row m-4"&gt;
+  &lt;p&gt;Hello&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+        
+        <!-- TAILWIND DEEP DIVE ADDED HERE -->
+        <div class="mt-8 space-y-6">
+            <h3 class="text-xl font-bold text-slate-200 border-b border-slate-800 pb-2">Deep Dive: How Tailwind translates React Native concepts</h3>
+            
+            <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-800">
+                <h4 class="text-lg font-bold text-sky-400 mb-2">1. The Spacing Scale (Margins & Padding)</h4>
+                <p class="text-slate-400 text-sm mb-2">In React Native, you use exact pixels (<code class="text-xs">marginTop: 16</code>). Tailwind uses a 4-pixel scale. <code class="text-xs text-sky-300">m-</code> is margin, <code class="text-xs text-sky-300">p-</code> is padding.</p>
+                <ul class="list-disc pl-5 text-sm text-slate-400 space-y-1">
+                    <li><code class="text-sky-300">mb-2</code> = <code class="text-emerald-400">marginBottom: 8px</code> (2 * 4)</li>
+                    <li><code class="text-sky-300">px-4</code> = padding on the X-axis (left/right) of 16px</li>
+                    <li><code class="text-sky-300">mt-10</code> = <code class="text-emerald-400">marginTop: 40px</code></li>
+                </ul>
+            </div>
+
+            <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-800">
+                <h4 class="text-lg font-bold text-sky-400 mb-2">2. Flexbox (It defaults to ROW!)</h4>
+                <p class="text-slate-400 text-sm mb-2"><strong>CRITICAL:</strong> In React Native, default flexDirection is 'column'. On the web, if you add the <code class="text-xs text-sky-300">flex</code> class, the default direction is <strong>ROW</strong>.</p>
+                <ul class="list-disc pl-5 text-sm text-slate-400 space-y-1">
+                    <li><code class="text-sky-300">flex</code> = turns on flexbox (default row)</li>
+                    <li><code class="text-sky-300">flex-col</code> = <code class="text-emerald-400">flexDirection: 'column'</code></li>
+                    <li><code class="text-sky-300">items-center</code> = <code class="text-emerald-400">alignItems: 'center'</code></li>
+                    <li><code class="text-sky-300">justify-center</code> = <code class="text-emerald-400">justifyContent: 'center'</code></li>
+                </ul>
+            </div>
+
+            <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-800">
+                <h4 class="text-lg font-bold text-sky-400 mb-2">3. Responsive Modifiers (md:, lg:)</h4>
+                <p class="text-slate-400 text-sm mb-2">Mobile apps have fixed screen sizes. The web stretches! You can change styles based on window size using prefixes:</p>
+                <p class="text-slate-400 text-sm bg-slate-950 p-2 rounded border border-slate-800 font-mono mb-2">
+                    className="text-2xl <span class="text-sky-300">md:text-3xl lg:text-5xl</span>"
+                </p>
+                <p class="text-slate-400 text-sm">This means: Default to <code class="text-xs">text-2xl</code>, but if the screen is Medium (Tablet) switch to <code class="text-xs">text-3xl</code>, and if Large (Desktop), jump to <code class="text-xs">text-5xl</code>.</p>
+            </div>
+        </div>
+        
+        <hr class="my-14 border-slate-800/80">
+
+        <!-- NEW CONTENT ADDED HERE -->
+        <header class="mb-8">
+            <h1 class="text-3xl font-extrabold text-teal-400 mb-4 tracking-tight">Industry Standards to Learn Next</h1>
+            <p class="text-lg text-slate-400">As a React Native dev, you already know state and components. Here is what you should learn to become a Senior React Web Developer.</p>
+        </header>
+
+        <div class="space-y-6">
+            
+            <div class="bg-slate-800/40 p-6 rounded-xl border border-slate-700 hover:border-teal-500/50 transition-colors">
+                <h3 class="text-xl font-bold mb-2 text-slate-200 flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                    1. Routing: React Router DOM
+                </h3>
+                <p class="text-slate-400 mb-2">In React Native, you use <strong>React Navigation</strong>. On the web, URLs are everything. You need to learn <strong>React Router DOM</strong>, which is the industry standard for mapping URLs (like <code>/about</code> or <code>/dashboard</code>) to specific React Components.</p>
+                <div class="bg-slate-950 p-3 rounded text-sm text-slate-300 font-mono border border-slate-800">
+                    &lt;Route path="/about" element={&lt;About /&gt;} /&gt;
+                </div>
+            </div>
+
+            <div class="bg-slate-800/40 p-6 rounded-xl border border-slate-700 hover:border-teal-500/50 transition-colors">
+                <h3 class="text-xl font-bold mb-2 text-slate-200 flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    2. Data Fetching: TanStack Query (React Query)
+                </h3>
+                <p class="text-slate-400">While you can use <code>fetch</code> inside a <code>useEffect</code>, the web industry uses <strong>TanStack Query</strong>. It handles caching, background refreshing, and loading/error states automatically. It's often paired with <strong>Axios</strong> or standard Fetch API.</p>
+            </div>
+
+            <div class="bg-slate-800/40 p-6 rounded-xl border border-slate-700 hover:border-teal-500/50 transition-colors">
+                <h3 class="text-xl font-bold mb-2 text-slate-200 flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                    3. Meta-Frameworks: Next.js (CRITICAL)
+                </h3>
+                <p class="text-slate-400 mb-2">Vite (what you are using now) is a client-side renderer. This means SEO is bad initially because the HTML is empty until JavaScript runs. <strong>Next.js</strong> is the massive industry standard right now. It provides Server-Side Rendering (SSR), making pages load instantly with full HTML content for Google to read.</p>
+                <p class="text-teal-400 text-sm mt-3 font-semibold">💡 Goal: Once you finish this Vite portfolio, try building a Next.js App Router project.</p>
+            </div>
+
+            <div class="bg-slate-800/40 p-6 rounded-xl border border-slate-700 hover:border-teal-500/50 transition-colors">
+                <h3 class="text-xl font-bold mb-2 text-slate-200 flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    4. Security and SEO
+                </h3>
+                <p class="text-slate-400">On mobile apps, SEO doesn't exist and you don't worry about CORS policies. On the web, you'll need to learn how to write <strong>Semantic HTML</strong> (using tags like <code>&lt;nav&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code> instead of just <code>&lt;div&gt;</code>) for Google Search and Screen Readers, as well as handling HTTP Cookies for authenticated sessions.</p>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>
