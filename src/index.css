@@ -28,7 +28,209 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 8px 32px 0 rgba(7, 9, 15, 0.6);
 }
 
+.glass-panel-bright {
+  background: rgba(99, 102, 241, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  box-shadow: 0 8px 40px 0 rgba(99, 102, 241, 0.15), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
 .text-gradient {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink;
+}
+
+/* ─── Typewriter cursor ─────────────────────────────────── */
+.typewriter-cursor::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+  color: #22d3ee;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ─── Shimmer text animation ────────────────────────────── */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #6366f1 0%,
+    #22d3ee 25%,
+    #a78bfa 50%,
+    #f472b6 75%,
+    #6366f1 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+@keyframes shimmer {
+  to { background-position: 200% center; }
+}
+
+/* ─── Scroll progress bar ───────────────────────────────── */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #6366f1, #22d3ee, #a78bfa);
+  z-index: 9999;
+  transform-origin: left;
+  box-shadow: 0 0 10px rgba(99,102,241,0.8), 0 0 20px rgba(34,211,238,0.4);
+}
+
+/* ─── Glow border animation ─────────────────────────────── */
+@keyframes glow-border {
+  0%, 100% { box-shadow: 0 0 5px rgba(99,102,241,0.4), 0 0 15px rgba(99,102,241,0.2), inset 0 0 5px rgba(99,102,241,0.05); }
+  50% { box-shadow: 0 0 15px rgba(167,139,250,0.6), 0 0 30px rgba(167,139,250,0.3), inset 0 0 10px rgba(167,139,250,0.08); }
+}
+.glow-border-animate {
+  animation: glow-border 3s ease-in-out infinite;
+}
+
+/* ─── Floating particles ─────────────────────────────────── */
+@keyframes particle-float {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+}
+
+/* ─── Section heading underline ─────────────────────────── */
+.section-heading {
+  position: relative;
+  display: inline-block;
+}
+.section-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #6366f1, #22d3ee);
+  transition: width 0.6s ease;
+  box-shadow: 0 0 8px rgba(34,211,238,0.5);
+}
+.section-heading:hover::after,
+.section-heading.active::after {
+  width: 100%;
+}
+
+/* ─── Magnetic button glow ───────────────────────────────── */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #6366f1, #22d3ee, #a78bfa, #f472b6, #6366f1);
+  background-size: 300% 300%;
+  border-radius: inherit;
+  z-index: -1;
+  animation: gradient-rotate 4s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.btn-glow:hover::before {
+  opacity: 1;
+}
+
+@keyframes gradient-rotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ─── Skill bar glow ─────────────────────────────────────── */
+@keyframes skill-glow {
+  0%, 100% { box-shadow: 0 0 4px rgba(34,211,238,0.5); }
+  50% { box-shadow: 0 0 12px rgba(34,211,238,0.9), 0 0 20px rgba(34,211,238,0.4); }
+}
+.skill-bar-glow {
+  animation: skill-glow 2s ease-in-out infinite;
+}
+
+/* ─── Card tilt spotlight ────────────────────────────────── */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+.spotlight-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(99,102,241,0.12) 0%, transparent 60%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.spotlight-card:hover::after {
+  opacity: 1;
+}
+
+/* ─── Stat counter flash ─────────────────────────────────── */
+@keyframes counter-flash {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+.counter-animate {
+  animation: counter-flash 0.4s ease-in-out;
+}
+
+/* ─── Timeline dot pulse ─────────────────────────────────── */
+@keyframes timeline-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(99,102,241,0.7); }
+  50% { box-shadow: 0 0 0 8px rgba(99,102,241,0); }
+}
+.timeline-dot-pulse {
+  animation: timeline-pulse 2s ease-in-out infinite;
+}
+
+/* ─── Gradient border card ───────────────────────────────── */
+.gradient-border-card {
+  position: relative;
+  background: rgba(7, 9, 15, 0.8);
+  border-radius: 16px;
+}
+.gradient-border-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 17px;
+  background: linear-gradient(135deg, rgba(99,102,241,0.5), rgba(167,139,250,0.3), rgba(34,211,238,0.5));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.gradient-border-card:hover::before {
+  opacity: 1;
+}
+
+/* ─── Neon text flicker ──────────────────────────────────── */
+@keyframes neon-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 0 0 4px #22d3ee, 0 0 11px #22d3ee, 0 0 19px #22d3ee;
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
+
+/* ─── Entrance wave for tag items ────────────────────────── */
+@keyframes tag-pop {
+  0% { transform: scale(0.8) translateY(4px); opacity: 0; }
+  60% { transform: scale(1.05) translateY(-2px); }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
 }
 
