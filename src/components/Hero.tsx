@@ -48,11 +48,11 @@ const Hero = () => {
                             href="#projects"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="group relative px-8 py-4 bg-neon-blue text-black font-bold rounded-full overflow-hidden flex items-center gap-2"
+                            className="group relative px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple text-white font-bold rounded-full overflow-hidden flex items-center gap-2 shadow-lg shadow-neon-blue/30"
                         >
                             <span className="relative z-10">View Projects</span>
                             <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
-                            <div className="absolute inset-0 bg-white/50 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                         </motion.a>
                         
                         <motion.a 

@@ -9,7 +9,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children, onResumeClick }) => {
   return (
-    <div className="min-h-screen flex flex-col relative text-white selection:bg-neon-blue selection:text-black">
+    <div className="min-h-screen flex flex-col relative text-slate-200 selection:bg-neon-blue selection:text-white">
       <Navbar onResumeClick={onResumeClick} />
       <main className="flex-grow">
         {children}

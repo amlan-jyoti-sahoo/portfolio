@@ -46,12 +46,12 @@ const ExperienceCard = ({ experience, index }: { experience: any, index: number 
         >
             {/* Timeline Line (Desktop) */}
             <div className="hidden md:block absolute left-[50%] top-0 bottom-0 w-px bg-white/10 -translate-x-1/2">
-                <div className={`absolute top-8 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 ${index === 0 ? 'border-neon-blue bg-neon-blue shadow-[0_0_10px_rgba(5,213,250,0.5)]' : 'border-gray-600 bg-black'}`} />
+                <div className={`absolute top-8 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 ${index === 0 ? 'border-neon-blue bg-neon-blue shadow-[0_0_10px_rgba(99,102,241,0.6)]' : 'border-gray-700 bg-bg-dark'}`} />
             </div>
             
              {/* Timeline Line (Mobile) */}
              <div className="md:hidden absolute left-0 top-0 bottom-0 w-px bg-white/10">
-                <div className={`absolute top-8 left-0 -translate-x-1/2 w-4 h-4 rounded-full border-2 ${index === 0 ? 'border-neon-blue bg-neon-blue shadow-[0_0_10px_rgba(5,213,250,0.5)]' : 'border-gray-600 bg-black'}`} />
+                <div className={`absolute top-8 left-0 -translate-x-1/2 w-4 h-4 rounded-full border-2 ${index === 0 ? 'border-neon-blue bg-neon-blue shadow-[0_0_10px_rgba(99,102,241,0.6)]' : 'border-gray-700 bg-bg-dark'}`} />
             </div>
 
             <div className={`md:flex items-start justify-between gap-10 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>

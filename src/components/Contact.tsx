@@ -98,7 +98,7 @@ ${originalMessage}
                                     type="text" 
                                     name="user_name"
                                     required
-                                    className="w-full bg-black/40 border border-white/10 rounded-lg text-white p-3 focus:outline-none focus:border-neon-blue transition-colors font-mono placeholder-white/20"
+                                    className="w-full bg-neon-blue/5 border border-neon-blue/20 rounded-lg text-slate-200 p-3 focus:outline-none focus:border-neon-blue transition-colors font-mono placeholder-slate-600"
                                     placeholder="John Doe"
                                 />
                             </div>
@@ -109,7 +109,7 @@ ${originalMessage}
                                     type="email" 
                                     name="user_email"
                                     required
-                                    className="w-full bg-black/40 border border-white/10 rounded-lg text-white p-3 focus:outline-none focus:border-neon-purple transition-colors font-mono placeholder-white/20"
+                                    className="w-full bg-neon-purple/5 border border-neon-purple/20 rounded-lg text-slate-200 p-3 focus:outline-none focus:border-neon-purple transition-colors font-mono placeholder-slate-600"
                                     placeholder="john@example.com"
                                 />
                             </div>
@@ -125,13 +125,13 @@ ${originalMessage}
                                     name="country_code"
                                     defaultValue="+91"
                                     maxLength={5}
-                                    className="w-24 bg-black/40 border border-white/10 rounded-lg text-white p-3 focus:outline-none focus:border-neon-cyan transition-colors font-mono placeholder-white/20 text-center"
+                                    className="w-24 bg-neon-cyan/5 border border-neon-cyan/20 rounded-lg text-slate-200 p-3 focus:outline-none focus:border-neon-cyan transition-colors font-mono placeholder-slate-600 text-center"
                                 />
                                 <input 
                                     type="tel" 
                                     name="mobile_number"
                                     maxLength={10}
-                                    className={`flex-1 bg-black/40 border ${mobileError ? 'border-red-500' : 'border-white/10'} rounded-lg text-white p-3 focus:outline-none focus:border-neon-cyan transition-colors font-mono placeholder-white/20`}
+                                    className={`flex-1 bg-neon-cyan/5 border ${mobileError ? 'border-red-500' : 'border-neon-cyan/20'} rounded-lg text-slate-200 p-3 focus:outline-none focus:border-neon-cyan transition-colors font-mono placeholder-slate-600`}
                                     placeholder="1234567890"
                                     onChange={(e) => {
                                         setMobileError(null);
@@ -153,7 +153,7 @@ ${originalMessage}
                                 name="message"
                                 required
                                 rows={4}
-                                className="w-full bg-black/40 border border-white/10 rounded-lg text-white p-3 focus:outline-none focus:border-neon-pink transition-colors font-mono resize-none placeholder-white/20"
+                                className="w-full bg-neon-pink/5 border border-neon-pink/20 rounded-lg text-slate-200 p-3 focus:outline-none focus:border-neon-pink transition-colors font-mono resize-none placeholder-slate-600"
                                 placeholder="Let's build something amazing..."
                             ></textarea>
                         </div>
@@ -161,7 +161,7 @@ ${originalMessage}
                         <button 
                             type="submit" 
                             disabled={isLoading}
-                            className="w-full py-4 bg-neon-blue/10 border border-neon-blue/50 text-neon-blue font-bold rounded-lg uppercase tracking-widest hover:bg-neon-blue hover:text-black transition-all duration-300 flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="w-full py-4 bg-neon-blue/10 border border-neon-blue/50 text-neon-blue font-bold rounded-lg uppercase tracking-widest hover:bg-neon-blue hover:text-white transition-all duration-300 flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {isLoading ? (
                                 <>

@@ -26,7 +26,7 @@ const Badges = () => {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="inline-flex items-center gap-2 px-8 py-3 bg-neon-blue text-black font-bold rounded-full mt-8 group relative overflow-hidden"
+                        className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-neon-blue to-neon-purple text-white font-bold rounded-full mt-8 group relative overflow-hidden"
                     >
                         <span className="relative z-10">Visit Google Developer Profile</span>
                         <ExternalLink className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />

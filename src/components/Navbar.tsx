@@ -44,7 +44,7 @@ const Navbar = ({ onResumeClick }: NavbarProps) => {
             {/* Resume Button */}
             <button 
                 onClick={onResumeClick}
-                className="ml-4 px-5 py-2 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full text-sm font-bold text-black hover:opacity-90 hover:shadow-neon transition-all duration-300"
+                className="ml-4 px-5 py-2 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full text-sm font-bold text-white hover:opacity-90 hover:shadow-neon transition-all duration-300"
             >
                 Resume
             </button>

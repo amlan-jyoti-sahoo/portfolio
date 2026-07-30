@@ -252,7 +252,7 @@ const CompanyCard = memo(({
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-neon-blue to-neon-purple text-black font-bold flex items-center justify-center gap-2 shadow-lg shadow-neon-blue/20 hover:shadow-neon-blue/40 transition-shadow"
+                            className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-neon-blue to-neon-purple text-white font-bold flex items-center justify-center gap-2 shadow-lg shadow-neon-blue/20 hover:shadow-neon-blue/40 transition-shadow"
                         >
                             Explore Project <ExternalLink size={16} />
                         </motion.button>

@@ -7,14 +7,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        'bg-dark': '#0a0a0a',
-        'neon-blue': '#00f3ff',
-        'neon-purple': '#bc13fe',
-        'neon-cyan': '#0afff0',
-        'neon-green': '#0aff0a',
-        'neon-pink': '#ff0055',
-        'neon-red': '#ff3131',
-        'neon-yellow': '#fff01f',
+        'bg-dark': '#07090f',
+        'neon-blue': '#6366f1',
+        'neon-purple': '#a78bfa',
+        'neon-cyan': '#22d3ee',
+        'neon-green': '#34d399',
+        'neon-pink': '#f472b6',
+        'neon-red': '#f87171',
+        'neon-yellow': '#fbbf24',
       },
       animation: {
         'spin-slow': 'spin 12s linear infinite',
@@ -36,10 +36,10 @@ export default {
         }
       },
       backgroundImage: {
-        'grid-pattern': "linear-gradient(to right, #00f0ff 1px, transparent 1px), linear-gradient(to bottom, #00f0ff 1px, transparent 1px)",
+        'grid-pattern': "linear-gradient(to right, #6366f1 1px, transparent 1px), linear-gradient(to bottom, #6366f1 1px, transparent 1px)",
       },
       boxShadow: {
-        'neon': '0 0 5px theme("colors.neon-blue"), 0 0 20px theme("colors.neon-purple")',
+        'neon': '0 0 5px theme("colors.neon-blue"), 0 0 20px theme("colors.neon-purple"), 0 0 40px rgba(99,102,241,0.3)',
         'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
       },
     },
