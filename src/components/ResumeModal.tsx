@@ -35,7 +35,7 @@ const ResumeModal = ({ isOpen, onClose }: ResumeModalProps) => {
                             </div>
                             <div className="flex items-center gap-4">
                                 <a 
-                                    href="https://drive.google.com/file/d/1_luZt1s5ovRHTOjTnNiYPsPK6THgV6Cc/view?usp=sharing" 
+                                    href="https://drive.google.com/file/d/1BCgLeKOetYDCkgnu3LFd9qB1dBh_GvMR/view?usp=sharing" 
                                     target="_blank" 
                                     rel="noopener noreferrer"
                                     className="flex items-center gap-2 text-xs md:text-sm text-gray-300 hover:text-white transition-colors uppercase font-mono tracking-wider border border-white/20 px-3 py-1.5 rounded hover:bg-white/5"
